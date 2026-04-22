@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Cybee — Product Intro</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;900&display=block"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #050514;
+        font-family: "Inter", sans-serif;
+        color: #ffffff;
+      }
+
+      [data-composition-id="cybee-intro"] {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+      }
+
+      #bg-video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 0;
+      }
+
+      .vignette {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+        background:
+          radial-gradient(ellipse at center, rgba(5, 5, 20, 0.35) 0%, rgba(5, 5, 20, 0.85) 75%),
+          linear-gradient(rgba(5, 5, 20, 0.4), rgba(5, 5, 20, 0.4));
+      }
+
+      .glow {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(90px);
+        pointer-events: none;
+        z-index: 2;
+        will-change: transform, opacity;
+      }
+      .glow-magenta {
+        width: 900px;
+        height: 900px;
+        left: 510px;
+        top: 90px;
+        background: radial-gradient(circle, rgba(255, 0, 110, 0.55) 0%, rgba(255, 0, 110, 0) 70%);
+      }
+      .glow-blue {
+        width: 720px;
+        height: 720px;
+        left: 1100px;
+        top: 480px;
+        background: radial-gradient(circle, rgba(58, 134, 255, 0.35) 0%, rgba(58, 134, 255, 0) 70%);
+      }
+
+      .scene-content {
+        position: relative;
+        z-index: 3;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        padding: 140px 200px;
+        gap: 28px;
+        text-align: center;
+        box-sizing: border-box;
+      }
+
+      .eyebrow {
+        font-size: 32px;
+        font-weight: 500;
+        letter-spacing: 0.55em;
+        color: #3a86ff;
+        text-transform: uppercase;
+        padding-left: 0.55em;
+      }
+
+      .brand {
+        font-size: 320px;
+        font-weight: 900;
+        line-height: 1;
+        letter-spacing: 0.08em;
+        color: #ffffff;
+        text-shadow: 0 0 60px rgba(255, 0, 110, 0.45);
+        padding-left: 0.08em;
+      }
+
+      .tagline {
+        font-size: 72px;
+        font-weight: 400;
+        letter-spacing: -0.01em;
+        color: #ffffff;
+      }
+
+      .tagline .hot {
+        color: #ff006e;
+        font-weight: 500;
+      }
+
+      .subtitle {
+        font-size: 28px;
+        font-weight: 400;
+        letter-spacing: 0.28em;
+        color: #b9bfd6;
+        text-transform: uppercase;
+        padding-left: 0.28em;
+      }
+
+      .rule {
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #3a86ff, transparent);
+        opacity: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="cybee-intro"
+      data-start="0"
+      data-duration="10"
+      data-width="1920"
+      data-height="1080"
+    >
+      <!-- Background video. Drop a muted-compatible clip at assets/bg-video.mp4 before rendering. -->
+      <video
+        id="bg-video"
+        class="clip"
+        data-start="0"
+        data-duration="10"
+        data-track-index="0"
+        src="assets/bg-video.mp4"
+        muted
+        playsinline
+      ></video>
+
+      <!-- Background music. Drop a 10s+ track at assets/bg-music.mp3 before rendering. -->
+      <audio
+        id="bg-music"
+        class="clip"
+        data-start="0"
+        data-duration="10"
+        data-track-index="1"
+        src="assets/bg-music.mp3"
+        data-volume="0.7"
+      ></audio>
+
+      <div class="vignette"></div>
+      <div class="glow glow-magenta" id="glow-a"></div>
+      <div class="glow glow-blue" id="glow-b"></div>
+
+      <div class="scene-content">
+        <div class="eyebrow" id="eyebrow">Introducing</div>
+        <h1 class="brand" id="brand">CYBEE</h1>
+        <div class="rule" id="rule"></div>
+        <div class="tagline" id="tagline">
+          Your <span class="hot">AI Teammate</span>
+        </div>
+        <div class="subtitle" id="subtitle">Ship faster &middot; Think smarter</div>
+      </div>
+
+      <script>
+        window.__timelines = window.__timelines || {};
+        const tl = gsap.timeline({ paused: true });
+
+        // Ambient decoratives — slow breathing throughout the 10s hold.
+        tl.fromTo(
+          "#glow-a",
+          { scale: 0.9, opacity: 0.55 },
+          { scale: 1.08, opacity: 0.85, duration: 5, ease: "sine.inOut", yoyo: true, repeat: 1 },
+          0,
+        );
+        tl.fromTo(
+          "#glow-b",
+          { scale: 1.05, opacity: 0.4 },
+          { scale: 0.95, opacity: 0.65, duration: 4.5, ease: "sine.inOut", yoyo: true, repeat: 1 },
+          0.2,
+        );
+
+        // Entrance choreography — varied eases, staggered reveals, no t=0.
+        tl.from(
+          "#eyebrow",
+          { y: 18, opacity: 0, duration: 0.55, ease: "power1.out" },
+          0.35,
+        );
+        tl.from(
+          "#brand",
+          {
+            y: 60,
+            opacity: 0,
+            letterSpacing: "-0.02em",
+            duration: 1.1,
+            ease: "expo.out",
+          },
+          0.6,
+        );
+        tl.to(
+          "#rule",
+          { width: 520, opacity: 0.9, duration: 0.7, ease: "power3.out" },
+          1.35,
+        );
+        tl.from(
+          "#tagline",
+          { y: 32, opacity: 0, duration: 0.75, ease: "power3.out" },
+          1.55,
+        );
+        tl.from(
+          "#subtitle",
+          { y: 16, opacity: 0, duration: 0.6, ease: "power2.out" },
+          1.95,
+        );
+
+        // Subtle hold-state breathing on the wordmark while the intro holds.
+        tl.fromTo(
+          "#brand",
+          { scale: 1 },
+          { scale: 1.015, duration: 3.2, ease: "sine.inOut", yoyo: true, repeat: 1 },
+          3.2,
+        );
+
+        // Final-scene fade (only permitted on the last scene — this is it).
+        tl.to("#rule", { opacity: 0, duration: 0.5, ease: "power2.in" }, 9.1);
+        tl.to(
+          ".scene-content",
+          { opacity: 0, y: -20, duration: 0.7, ease: "power2.in" },
+          9.2,
+        );
+        tl.to(
+          [".glow-magenta", ".glow-blue", ".vignette"],
+          { opacity: 0, duration: 0.7, ease: "power2.in" },
+          9.3,
+        );
+
+        window.__timelines["cybee-intro"] = tl;
+      </script>
+    </div>
+  </body>
+</html>
