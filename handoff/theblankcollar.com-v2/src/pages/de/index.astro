@@ -1,0 +1,153 @@
+---
+import Base from "~/layouts/Base.astro";
+import Section from "~/components/Section.astro";
+import { localizedPath } from "~/i18n/ui";
+const lang = "de" as const;
+const p = (path: string) => localizedPath(lang, path);
+
+const onramps = [
+  {
+    title: "Agenturen & Holdings",
+    problem: "Ihre Umsetzung verteilt sich auf fünf Dienstleister, jeder mit eigenem Gantt-Diagramm.",
+    offer: "Ein eingebettetes Team ersetzt das Chaos — Frameworks, Infrastruktur und Produkt geliefert in Tagen.",
+    examples: "Dentsu, iProspect, Merkle",
+    cta: "Arbeit für Agenturen",
+  },
+  {
+    title: "Unternehmen & Scaleups",
+    problem: "Sie entscheiden zwischen kaufen, bauen oder neu bauen.",
+    offer: "Wir bauen Ihre Operations mit KI neu — und liefern das Produkt, wenn Sie es brauchen.",
+    examples: "YouGov, Numarics, Cybee.ai",
+    cta: "Produktarbeit",
+  },
+  {
+    title: "Mittelstand-Entscheider",
+    problem: "Sie brauchen einen KI-Plan, nicht eine sechsmonatige Beratungsrunde.",
+    offer: "Ein Plan in 24 Stunden. Ein Workshop, der liefert. Operations neu gebaut in 7–14 Tagen.",
+    examples: "Mai Group, Alletta, Visorway, Iqtax",
+    cta: "Transformationsarbeit",
+  },
+];
+
+const cased = ["Dentsu", "YouGov", "Numarics", "Cybee.ai", "Mai Group", "Alletta", "Visorway", "Iqtax"];
+const additional = ["iProspect", "Merkle", "Mandeta"];
+
+const pillars = [
+  {
+    title: "Leistungen",
+    body: "Marketing, Operations, Finanzen, HR, Automatisierung, Produkt. Geliefert von einem Team, KI-nativ, aus einem Raum, mit gemeinsamem Kontext.",
+    href: p("/services"),
+  },
+  {
+    title: "Ressourcen",
+    body: "Essays, Video, Podcast, Whitepapers, Workshops. The Blank Collar veröffentlicht im Takt.",
+    href: p("/resources"),
+  },
+  {
+    title: "Framework",
+    body: "Das Blank Collar Framework — wie wir das Betriebsmodell neu bauen, statt KI daranzuschrauben.",
+    href: p("/framework"),
+  },
+];
+---
+
+<Base
+  lang={lang}
+  title="The Blank Collar — Arbeit ist für Bots. Leben ist für Menschen."
+  description="Eine KI-native Transformationsagentur. Ein eingebettetes Team baut Operations mit KI neu, anstatt sie nur anzuschrauben. Ergebnisse in Tagen, an Ergebnissen bemessen."
+>
+  <Section class="!pt-12 md:!pt-20">
+    <div class="max-w-4xl">
+      <h1 class="font-ultrabold text-display tracking-tightest leading-none">
+        Arbeit ist für Bots.<br />
+        <span class="text-brand-magenta">Leben ist für Menschen.</span>
+      </h1>
+      <p class="mt-8 max-w-2xl text-body-lg text-text/80">
+        Die meisten Unternehmen haben ChatGPT an ein kaputtes Organigramm geschraubt
+        und es Transformation genannt. Wir schrauben nicht. Wir bauen neu.
+      </p>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a class="btn-primary" href={p("/contact")}>Mit einem Problem starten →</a>
+        <a class="btn-secondary" href={p("/services/cases")}>Unsere Arbeit</a>
+      </div>
+    </div>
+  </Section>
+
+  <Section class="!py-16">
+    <h2 class="font-ultrabold text-h2 tracking-tighter">Mit wem wir arbeiten</h2>
+    <div class="mt-10 grid gap-6 md:grid-cols-3">
+      {onramps.map((o) => (
+        <article class="card flex flex-col">
+          <h3 class="font-ultrabold text-h4 uppercase tracking-tighter">{o.title}</h3>
+          <p class="mt-4 text-small text-text/80"><strong class="text-text">Problem.</strong> {o.problem}</p>
+          <p class="mt-3 text-small text-text/80"><strong class="text-text">Angebot.</strong> {o.offer}</p>
+          <p class="mt-3 text-micro uppercase tracking-tighter text-text/60">{o.examples}</p>
+          <a class="mt-6 text-small font-ultrabold uppercase tracking-tighter text-brand-magenta" href={p("/services/cases")}>{o.cta} →</a>
+        </article>
+      ))}
+    </div>
+  </Section>
+
+  <Section tone="ink" class="!py-16">
+    <p class="font-ultrabold text-h3 tracking-tighter">Namhafte Kunden. Echte Lieferungen. Keine Stundenkarten.</p>
+    <div class="mt-8 flex flex-wrap gap-x-8 gap-y-3 text-body">
+      {cased.map((c) => (
+        <a class="hover:text-brand-magenta" href={p(`/services/cases/${c.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`)}>{c}</a>
+      ))}
+    </div>
+    <p class="mt-6 text-small text-brand-paper/60">Außerdem: {additional.join(" · ")}</p>
+  </Section>
+
+  <Section>
+    <h2 class="font-ultrabold text-h2 tracking-tighter">Was wir machen</h2>
+    <div class="mt-10 grid gap-6 md:grid-cols-3">
+      {pillars.map((pl) => (
+        <a class="card flex flex-col" href={pl.href}>
+          <h3 class="font-ultrabold text-h4 uppercase tracking-tighter">{pl.title}</h3>
+          <p class="mt-4 text-small text-text/80">{pl.body}</p>
+          <span class="mt-6 text-small font-ultrabold uppercase tracking-tighter text-brand-magenta">Ansehen →</span>
+        </a>
+      ))}
+    </div>
+  </Section>
+
+  <Section tone="gradient">
+    <div class="max-w-3xl text-brand-ink">
+      <p class="font-ultrabold text-h2 tracking-tighter">Arbeit ist für Bots. Leben ist für Menschen.</p>
+      <div class="mt-6 space-y-4 text-body-lg">
+        <p>Jedes Unternehmen sagt heute, es sei „KI-gestützt". Fast keines ist es wirklich.</p>
+        <p>Sie haben ChatGPT an ein kaputtes Organigramm geschraubt und es Transformation genannt. Dieselben Schichten. Dieselben Dienstleister. Dieselben Stundenrechnungen. Dieselbe verhedderte Maschine — nur etwas schneller Richtung derselben Sackgasse.</p>
+        <p>Wir schrauben nicht. Wir bauen die Maschine neu.</p>
+        <p>Ein eingebettetes Team. Marketing, Operations, Finanzen, HR, Automatisierung — geliefert KI-nativ, aus einem Raum, mit gemeinsamem Kontext.</p>
+        <p>Bots machen die Arbeit, die Bots machen sollen. Menschen machen die Arbeit, die nur Menschen können. Ergebnisse in Tagen. Preise hängen am Ergebnis.</p>
+        <p class="font-ultrabold">Schluss mit Schrauben. Neu bauen.</p>
+      </div>
+    </div>
+  </Section>
+
+  <Section>
+    <h2 class="font-ultrabold text-h2 tracking-tighter">The Blank Collar ist mehr als eine Seite.</h2>
+    <div class="mt-8 grid gap-6 md:grid-cols-2">
+      <a class="card" href="https://blankcollar.ai" rel="noopener">
+        <h3 class="font-ultrabold text-h4 uppercase tracking-tighter">blankcollar.ai</h3>
+        <p class="mt-3 text-small text-text/80">Die Tools. Was wir bauen, als nutzbare Produkte veröffentlicht.</p>
+      </a>
+      <a class="card" href="https://blankcollar.vc" rel="noopener">
+        <h3 class="font-ultrabold text-h4 uppercase tracking-tighter">blankcollar.vc</h3>
+        <p class="mt-3 text-small text-text/80">Der Venture-Arm.</p>
+      </a>
+    </div>
+    <a class="mt-6 inline-block text-small font-ultrabold uppercase tracking-tighter text-brand-magenta" href={p("/ecosystem")}>Alle ansehen →</a>
+  </Section>
+
+  <Section tone="gradient">
+    <div class="max-w-2xl text-brand-ink">
+      <p class="font-ultrabold text-h1 tracking-tightest">Schluss mit Schrauben. Neu bauen.</p>
+      <p class="mt-6 text-body-lg">
+        Starten Sie mit einem Problem, nicht mit einem Briefing. Wir antworten in 24 Stunden
+        und liefern einen Plan in 24 Stunden nach Kickoff.
+      </p>
+      <a class="btn-primary mt-8" href={p("/contact")}>Mit uns arbeiten →</a>
+    </div>
+  </Section>
+</Base>

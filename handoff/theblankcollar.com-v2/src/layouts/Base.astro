@@ -1,0 +1,55 @@
+---
+import "~/styles/global.css";
+import Nav from "~/components/Nav.astro";
+import Footer from "~/components/Footer.astro";
+import { t, type Lang, switchLangPath } from "~/i18n/ui";
+
+type Props = {
+  title: string;
+  description: string;
+  lang: Lang;
+};
+
+const { title, description, lang } = Astro.props;
+const s = t(lang);
+const pathname = Astro.url.pathname;
+const altPath = switchLangPath(lang, pathname);
+const canonical = new URL(pathname, Astro.site ?? "https://theblankcollar.com").toString();
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="en" href={new URL(lang === "en" ? pathname : altPath, Astro.site ?? "https://theblankcollar.com").toString()} />
+    <link rel="alternate" hreflang="de" href={new URL(lang === "de" ? pathname : altPath, Astro.site ?? "https://theblankcollar.com").toString()} />
+    <link rel="alternate" hreflang="x-default" href={new URL("/", Astro.site ?? "https://theblankcollar.com").toString()} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#FA2BB8" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body class="bg-surface text-text">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:rounded-md focus:bg-surface-2 focus:px-4 focus:py-2 focus:text-text"
+    >
+      {s.nav.skipToContent}
+    </a>
+
+    <Nav lang={lang} pathname={pathname} />
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <Footer lang={lang} />
+  </body>
+</html>

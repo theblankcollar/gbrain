@@ -1,0 +1,92 @@
+---
+import Base from "~/layouts/Base.astro";
+import Section from "~/components/Section.astro";
+import { localizedPath } from "~/i18n/ui";
+const lang = "en" as const;
+const p = (path: string) => localizedPath(lang, path);
+
+const principles = [
+  { n: "01", title: "Re-architect, don't bolt.", body: "AI's value doesn't come from sprinkling it across an old org chart. It comes from building a new one — where agents do the work humans shouldn't, and humans do the work only humans can." },
+  { n: "02", title: "One team, one context.", body: "Fragmented delivery across five vendors loses the plot at every handoff. One embedded team holds the marketing, ops, finance, HR, and automation context simultaneously — and decides from one room." },
+  { n: "03", title: "Outcomes, not outputs.", body: "We don't sell hours, headcount, or sprints. We sell specific outcomes — the thing you wanted when you hired us. Pricing is tied to those outcomes." },
+  { n: "04", title: "Days, not quarters.", body: "Plans measure in days. Delivery measures in weeks. Six-month discoveries are a business model, not a methodology." },
+  { n: "05", title: "Bots do work. Humans live.", body: "The point of AI-native delivery is that operational mass stops eating the humans inside the business. Bots do the work bots should do. Humans get their life back." },
+];
+
+const old = [
+  "Five+ vendors, each billing hours",
+  "Sequential handoffs between silos",
+  "Quarterly planning, annual budgets",
+  "Humans execute; software assists",
+];
+const neu = [
+  "One embedded team, billing outcomes",
+  "Parallel delivery across functions",
+  "Daily planning, weekly shipping",
+  "Agents execute; humans direct",
+];
+---
+
+<Base
+  lang={lang}
+  title="The Blank Collar Framework"
+  description="How we re-architect the operating model instead of bolting AI onto it. Five principles and a new operating model."
+>
+  <Section>
+    <h1 class="font-ultrabold text-display tracking-tightest leading-none">The Blank Collar Framework</h1>
+    <p class="mt-8 max-w-3xl text-body-lg text-text/80">
+      How we re-architect the operating model instead of bolting AI onto it.
+    </p>
+  </Section>
+
+  <Section class="!pt-0">
+    <div class="prose-site max-w-3xl space-y-4 text-body text-text/90">
+      <p>Most "AI transformation" isn't transformation. It's automation inside a broken model. Same departments. Same vendors. Same meetings. A ChatGPT licence per seat. That's not transformation — it's a paint job.</p>
+      <p>The Blank Collar Framework is a different claim: AI only creates real leverage when you rebuild the operating model around it. When one team can own what five vendors used to. When outcomes replace hours. When plans measure in days and delivery measures in weeks.</p>
+      <p class="font-ultrabold text-text">This is how we do it.</p>
+    </div>
+  </Section>
+
+  <Section tone="ink">
+    <h2 class="font-ultrabold text-h2 tracking-tighter">Five principles</h2>
+    <ol class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {principles.map((pr) => (
+        <li class="rounded-lg border border-brand-paper/20 p-6">
+          <span class="font-ultrabold text-h2 tracking-tighter text-brand-magenta">{pr.n}</span>
+          <h3 class="mt-3 font-ultrabold text-h4 uppercase tracking-tighter">{pr.title}</h3>
+          <p class="mt-3 text-small text-brand-paper/80">{pr.body}</p>
+        </li>
+      ))}
+    </ol>
+  </Section>
+
+  <Section>
+    <h2 class="font-ultrabold text-h2 tracking-tighter">The model</h2>
+    <div class="mt-10 grid gap-6 md:grid-cols-2">
+      <article class="card">
+        <h3 class="font-ultrabold text-h4 uppercase tracking-tighter text-text/60">Old operating model</h3>
+        <ul class="mt-4 space-y-2 text-small text-text/80">
+          {old.map((o) => <li>— {o}</li>)}
+        </ul>
+      </article>
+      <article class="card border-brand-magenta/60">
+        <h3 class="font-ultrabold text-h4 uppercase tracking-tighter text-brand-magenta">New operating model</h3>
+        <ul class="mt-4 space-y-2 text-small text-text">
+          {neu.map((o) => <li>— {o}</li>)}
+        </ul>
+      </article>
+    </div>
+    <p class="mt-10 max-w-3xl text-body-lg text-text/80">
+      The equation: shift operational mass from humans to agents, and the humans become
+      leverage instead of bottleneck.
+    </p>
+  </Section>
+
+  <Section tone="gradient">
+    <div class="max-w-2xl text-brand-ink">
+      <p class="font-ultrabold text-h1 tracking-tightest">Want the framework applied to your business?</p>
+      <p class="mt-6 text-body-lg">Start with a problem, not a brief.</p>
+      <a class="btn-primary mt-8" href={p("/contact")}>Work with us →</a>
+    </div>
+  </Section>
+</Base>

@@ -1,0 +1,14 @@
+---
+import Base from "~/layouts/Base.astro";
+import ResourceStub from "~/components/ResourceStub.astro";
+const lang = "de" as const;
+---
+
+<Base lang={lang} title="Videos — The Blank Collar" description="Interviews, Erklärungen, Demos.">
+  <ResourceStub
+    lang={lang}
+    title="Videos"
+    body="Interviews, Erklärungen, Demos. Erste Folge erscheint in Phase 6."
+    comingSoon="Phase 6 — bald verfügbar"
+  />
+</Base>

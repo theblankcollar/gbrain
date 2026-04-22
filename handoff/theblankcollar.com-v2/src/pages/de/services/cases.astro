@@ -1,0 +1,54 @@
+---
+import Base from "~/layouts/Base.astro";
+import Section from "~/components/Section.astro";
+import { localizedPath } from "~/i18n/ui";
+const lang = "de" as const;
+const p = (path: string) => localizedPath(lang, path);
+
+const cases = [
+  { slug: "dentsu", client: "Dentsu", what: "Total Collaboration Framework + Data Lake", icp: "Agentur" },
+  { slug: "yougov", client: "YouGov", what: "Transformation + Buy vs Build", icp: "Unternehmen" },
+  { slug: "numarics", client: "Numarics", what: "Produkt-Build", icp: "Scaleup" },
+  { slug: "cybee", client: "Cybee.ai", what: "Produkt-Build", icp: "Scaleup" },
+  { slug: "mai-group", client: "Mai Group", what: "Transformations-Workshop", icp: "Mittelstand" },
+  { slug: "alletta", client: "Alletta", what: "Workshop", icp: "Mittelstand" },
+  { slug: "visorway", client: "Visorway", what: "Workshop", icp: "Mittelstand" },
+  { slug: "iqtax", client: "Iqtax", what: "Workshop", icp: "Mittelstand" },
+];
+---
+
+<Base
+  lang={lang}
+  title="Cases — The Blank Collar"
+  description="Acht Engagements. Namhafte Kunden, echte Lieferungen, keine Stundenkarten."
+>
+  <Section>
+    <h1 class="font-ultrabold text-h1 tracking-tightest">Die Arbeit</h1>
+    <p class="mt-6 max-w-3xl text-body-lg text-text/80">
+      Acht Engagements. Namhafte Kunden, echte Lieferungen, keine Stundenkarten. Jeder Case
+      ist eine eigene Langform — kommt in Phase 6.
+    </p>
+  </Section>
+
+  <Section class="!pt-0">
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {cases.map((c) => (
+        <article class="card flex flex-col">
+          <span class="text-micro uppercase tracking-tighter text-text/60">{c.icp}</span>
+          <h2 class="mt-2 font-ultrabold text-h4 uppercase tracking-tighter">{c.client}</h2>
+          <p class="mt-3 text-small text-text/80">{c.what}</p>
+          <span class="mt-6 text-small font-ultrabold uppercase tracking-tighter text-brand-magenta/60">
+            Bald verfügbar →
+          </span>
+        </article>
+      ))}
+    </div>
+  </Section>
+
+  <Section tone="gradient">
+    <div class="max-w-2xl text-brand-ink">
+      <p class="font-ultrabold text-h2 tracking-tighter">So ein Ergebnis auch?</p>
+      <a class="btn-primary mt-6" href={p("/contact")}>Mit uns arbeiten →</a>
+    </div>
+  </Section>
+</Base>

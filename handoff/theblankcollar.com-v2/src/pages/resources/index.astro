@@ -1,0 +1,39 @@
+---
+import Base from "~/layouts/Base.astro";
+import Section from "~/components/Section.astro";
+import { localizedPath } from "~/i18n/ui";
+const lang = "en" as const;
+const p = (path: string) => localizedPath(lang, path);
+
+const formats = [
+  { slug: "essays", title: "Essays", body: "Long-form takes from the operator's chair." },
+  { slug: "videos", title: "Videos", body: "Interviews, explainers, demos." },
+  { slug: "podcast", title: "Podcast", body: "Longform conversations. Own RSS feed." },
+  { slug: "whitepapers", title: "Whitepapers", body: "Deep takes, PDF and native." },
+  { slug: "workshops", title: "Workshops", body: "Registration and self-serve modules." },
+];
+---
+
+<Base
+  lang={lang}
+  title="Resources — The Blank Collar"
+  description="Essays, video, podcast, whitepapers, workshops. The Blank Collar publishes at pace."
+>
+  <Section>
+    <h1 class="font-ultrabold text-h1 tracking-tightest">Resources</h1>
+    <p class="mt-6 max-w-3xl text-body-lg text-text/80">
+      Essays, video, podcast, whitepapers, workshops. Built from the same automated content engine.
+    </p>
+  </Section>
+
+  <Section class="!pt-0">
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {formats.map((f) => (
+        <a class="card" href={p(`/resources/${f.slug}`)}>
+          <h2 class="font-ultrabold text-h4 uppercase tracking-tighter">{f.title}</h2>
+          <p class="mt-3 text-small text-text/80">{f.body}</p>
+        </a>
+      ))}
+    </div>
+  </Section>
+</Base>

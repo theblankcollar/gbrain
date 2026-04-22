@@ -1,0 +1,66 @@
+---
+import { t, type Lang, localizedPath, switchLangPath } from "~/i18n/ui";
+
+type Props = { lang: Lang; pathname: string };
+const { lang, pathname } = Astro.props;
+const strings = t(lang);
+const p = (path: string) => localizedPath(lang, path);
+---
+
+<header class="sticky top-0 z-40 border-b border-border/10 bg-surface/80 backdrop-blur-md">
+  <div class="container-site flex h-16 items-center justify-between gap-6">
+    <a href={p("/")} class="font-ultrabold text-small uppercase tracking-tighter text-text">
+      The&nbsp;Blank&nbsp;Collar
+    </a>
+
+    <nav aria-label="Primary" class="hidden md:block">
+      <ul class="flex items-center gap-6 text-small">
+        <li><a class="hover:text-brand-magenta transition-colors" href={p("/services")}>{strings.nav.services}</a></li>
+        <li><a class="hover:text-brand-magenta transition-colors" href={p("/resources")}>{strings.nav.resources}</a></li>
+        <li><a class="hover:text-brand-magenta transition-colors" href={p("/framework")}>{strings.nav.framework}</a></li>
+        <li><a class="hover:text-brand-magenta transition-colors" href={p("/about")}>{strings.nav.about}</a></li>
+        <li><a class="hover:text-brand-magenta transition-colors" href={p("/contact")}>{strings.nav.contact}</a></li>
+      </ul>
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <a
+        class="hidden sm:inline-block rounded-md border border-border/30 px-3 py-1 text-micro uppercase tracking-tighter hover:border-brand-magenta hover:text-brand-magenta transition-colors"
+        href={switchLangPath(lang, pathname)}
+        hreflang={lang === "en" ? "de" : "en"}
+      >
+        {strings.nav.switchLang}
+      </a>
+      <button
+        id="theme-toggle"
+        type="button"
+        class="rounded-md border border-border/30 px-3 py-1 text-micro uppercase tracking-tighter hover:border-brand-magenta hover:text-brand-magenta transition-colors"
+        aria-label="Toggle theme"
+      >
+        <span class="hidden dark:inline">Light</span>
+        <span class="dark:hidden">Dark</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<script is:inline>
+  (function () {
+    const stored = localStorage.getItem("tbc-theme");
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const dark = stored === "dark" || (stored !== "light" && prefersDark);
+    document.documentElement.classList.toggle("dark", dark);
+    document.documentElement.classList.toggle("light", !dark);
+  })();
+</script>
+
+<script>
+  const btn = document.getElementById("theme-toggle");
+  btn?.addEventListener("click", () => {
+    const isDark = document.documentElement.classList.contains("dark");
+    const next = isDark ? "light" : "dark";
+    document.documentElement.classList.toggle("dark", next === "dark");
+    document.documentElement.classList.toggle("light", next === "light");
+    localStorage.setItem("tbc-theme", next);
+  });
+</script>

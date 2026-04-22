@@ -1,0 +1,25 @@
+---
+import Section from "~/components/Section.astro";
+import { localizedPath, type Lang } from "~/i18n/ui";
+
+type Props = {
+  lang: Lang;
+  title: string;
+  body: string;
+  comingSoon: string;
+};
+
+const { lang, title, body, comingSoon } = Astro.props;
+const p = (path: string) => localizedPath(lang, path);
+---
+
+<Section>
+  <h1 class="font-ultrabold text-h1 tracking-tightest">{title}</h1>
+  <p class="mt-6 max-w-3xl text-body-lg text-text/80">{body}</p>
+  <p class="mt-10 inline-block rounded-md border border-border/30 px-4 py-2 text-small uppercase tracking-tighter text-text/70">
+    {comingSoon}
+  </p>
+  <div class="mt-8">
+    <a class="btn-secondary" href={p("/resources")}>← Resources</a>
+  </div>
+</Section>

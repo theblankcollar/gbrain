@@ -1,0 +1,14 @@
+---
+import Base from "~/layouts/Base.astro";
+import ResourceStub from "~/components/ResourceStub.astro";
+const lang = "en" as const;
+---
+
+<Base lang={lang} title="Podcast — The Blank Collar" description="Longform conversations. Own RSS feed.">
+  <ResourceStub
+    lang={lang}
+    title="Podcast"
+    body="Longform conversations. Own RSS feed at /resources/podcast/feed.xml. Episodes land in Phase 6."
+    comingSoon="Phase 6 — coming soon"
+  />
+</Base>

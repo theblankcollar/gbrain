@@ -1,0 +1,110 @@
+---
+import Base from "~/layouts/Base.astro";
+import Section from "~/components/Section.astro";
+import { localizedPath } from "~/i18n/ui";
+const lang = "de" as const;
+const p = (path: string) => localizedPath(lang, path);
+
+const awards = [
+  "Best of Swiss Apps — Numarics",
+  "Best of Swiss Apps — Cybee.ai",
+  "Top 10 Swiss Fintech",
+  "Swissalps Entrepreneur of the Year",
+  "Top 100 Startup",
+  "Bilanz — featured",
+  "Leading Swiss Marketer 2018",
+  "Deel Top 100 — Cybee.ai",
+];
+const boards = ["STIKK", "Deutsche Handelskammer", "Fintech Kosova", "Innovation Center Prizren"];
+---
+
+<Base
+  lang={lang}
+  title="Über uns — The Blank Collar"
+  description="Fünfzehn Jahre. Zehn Unternehmen. Ein Muster. The Blank Collar kam nicht vom Whiteboard."
+>
+  <Section>
+    <h1 class="font-ultrabold text-display tracking-tightest leading-none">Wie es begann</h1>
+    <p class="mt-8 max-w-3xl text-body-lg text-text/80">
+      The Blank Collar kam nicht vom Whiteboard. Es kam aus 15 Jahren, in denen ich immer wieder
+      dasselbe Muster in Agenturen und Unternehmen kaputtgehen sah.
+    </p>
+  </Section>
+
+  <Section class="!pt-0">
+    <h2 class="font-ultrabold text-h2 tracking-tighter">Fünfzehn Jahre. Zehn Unternehmen. Ein Muster.</h2>
+    <div class="prose-site mt-8 space-y-4 text-text/90">
+      <p>
+        Ich habe auf der Publisher-Seite bei <strong>Tilllate</strong> angefangen. Bin über
+        <strong>Havas</strong> und <strong>Gyro</strong> in Agenturen gewechselt. Produkt- und
+        Transformationsarbeit bei <strong>YouGov</strong> und <strong>Dentsu</strong> gebaut. Bin
+        bei <strong>Numarics</strong> und <strong>Radicant</strong> Operator geworden. Habe
+        <strong>Cybee.ai</strong> und <strong>Mandeta</strong> mitaufgebaut und geführt.
+      </p>
+      <p>
+        Überall, wo ich war, tauchte dasselbe Problem in verschiedenen Kostümen auf. Zersplitterte
+        Lieferung. Vendor-Sprawl. Strategiearbeit, die ein Foliensatz blieb. Teams, die sich selbst
+        auffraßen, um Deadlines zu treffen, die nie ihre eigenen waren.
+      </p>
+      <p>
+        Als KI wirklich funktionierte — nicht die alte KI, die neue — war die Antwort offensichtlich:
+        Hört auf, innerhalb des kaputten Modells zu automatisieren. Baut es neu.
+      </p>
+      <p class="font-ultrabold text-text">Das ist The Blank Collar.</p>
+    </div>
+  </Section>
+
+  <Section tone="gradient">
+    <div class="max-w-3xl text-brand-ink">
+      <h2 class="font-ultrabold text-h2 tracking-tighter">Worum es geht</h2>
+      <div class="mt-6 space-y-4 text-body-lg">
+        <p>
+          Der Name ist ein Witz mit Pointe. White Collar, Blue Collar — beide beschreiben Menschen,
+          die Arbeit machen. The Blank Collar beschreibt Arbeit, die keinen Menschen braucht. Das
+          meiste, was Ihren Tag füllt, ist Blank-Collar-Arbeit: weiterleiten, abgleichen,
+          zusammenfassen, hinterherlaufen.
+        </p>
+        <p>
+          Geben Sie diese Arbeit an Agenten ab. Geben Sie den Menschen die Stunden zurück. Machen
+          Sie das Unternehmen schneller und die Menschen darin weniger müde.
+        </p>
+        <p class="font-ultrabold">Arbeit ist für Bots. Leben ist für Menschen.</p>
+      </div>
+    </div>
+  </Section>
+
+  <Section>
+    <h2 class="font-ultrabold text-h2 tracking-tighter">Kristian Kabashi</h2>
+    <p class="mt-2 text-small text-text/60 italic">Gründer & Operator. Zürich.</p>
+    <blockquote class="mt-6 max-w-3xl border-l-4 border-brand-magenta pl-6 text-body-lg text-text/90 italic">
+      Ich war Mitarbeiter, Dienstleister, Gründer, Käufer und Operator. Ich habe an allen Seiten
+      des Tisches gesessen. The Blank Collar ist das, was ich an jedem dieser Plätze engagiert
+      hätte, wenn es existiert hätte.
+    </blockquote>
+  </Section>
+
+  <Section tone="ink">
+    <h2 class="font-ultrabold text-h2 tracking-tighter">Anerkennung</h2>
+    <div class="mt-10 grid gap-10 md:grid-cols-2">
+      <div>
+        <h3 class="font-ultrabold text-h4 uppercase tracking-tighter">Auszeichnungen</h3>
+        <ul class="mt-4 space-y-2 text-small text-brand-paper/80">
+          {awards.map((a) => <li>— {a}</li>)}
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-ultrabold text-h4 uppercase tracking-tighter">Boards</h3>
+        <ul class="mt-4 space-y-2 text-small text-brand-paper/80">
+          {boards.map((b) => <li>— {b}</li>)}
+        </ul>
+      </div>
+    </div>
+  </Section>
+
+  <Section tone="gradient">
+    <div class="max-w-2xl text-brand-ink">
+      <p class="font-ultrabold text-h2 tracking-tighter">Gemeinsam arbeiten?</p>
+      <a class="btn-primary mt-6" href={p("/contact")}>Kontakt →</a>
+    </div>
+  </Section>
+</Base>

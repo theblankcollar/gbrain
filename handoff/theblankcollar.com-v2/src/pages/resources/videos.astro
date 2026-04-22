@@ -1,0 +1,14 @@
+---
+import Base from "~/layouts/Base.astro";
+import ResourceStub from "~/components/ResourceStub.astro";
+const lang = "en" as const;
+---
+
+<Base lang={lang} title="Videos — The Blank Collar" description="Interviews, explainers, demos.">
+  <ResourceStub
+    lang={lang}
+    title="Videos"
+    body="Interviews, explainers, demos. The first batch lands in Phase 6."
+    comingSoon="Phase 6 — coming soon"
+  />
+</Base>

@@ -1,0 +1,92 @@
+---
+import Base from "~/layouts/Base.astro";
+import Section from "~/components/Section.astro";
+import { localizedPath } from "~/i18n/ui";
+const lang = "de" as const;
+const p = (path: string) => localizedPath(lang, path);
+
+const principles = [
+  { n: "01", title: "Neu bauen, nicht anschrauben.", body: "Der Wert von KI entsteht nicht, indem man sie über ein altes Organigramm streut. Er entsteht, indem man ein neues baut — in dem Agenten die Arbeit machen, die Menschen nicht machen sollten." },
+  { n: "02", title: "Ein Team, ein Kontext.", body: "Zersplitterte Umsetzung über fünf Dienstleister verliert bei jeder Übergabe den Faden. Ein eingebettetes Team hält Marketing, Operations, Finanzen, HR und Automatisierung gleichzeitig im Kopf." },
+  { n: "03", title: "Ergebnisse, keine Outputs.", body: "Wir verkaufen keine Stunden, keinen Headcount, keine Sprints. Wir verkaufen konkrete Ergebnisse. Preise hängen an diesen Ergebnissen." },
+  { n: "04", title: "Tage, keine Quartale.", body: "Pläne messen in Tagen. Lieferung in Wochen. Sechsmonatige Discoveries sind ein Geschäftsmodell, keine Methodik." },
+  { n: "05", title: "Bots arbeiten. Menschen leben.", body: "Der Sinn KI-nativer Lieferung ist, dass operative Masse die Menschen im Unternehmen nicht mehr auffrisst. Menschen bekommen ihr Leben zurück." },
+];
+
+const old = [
+  "Fünf+ Dienstleister, jeder berechnet Stunden",
+  "Sequenzielle Übergaben zwischen Silos",
+  "Quartalsplanung, Jahresbudgets",
+  "Menschen führen aus; Software unterstützt",
+];
+const neu = [
+  "Ein eingebettetes Team, berechnet Ergebnisse",
+  "Parallele Lieferung über Funktionen hinweg",
+  "Tagesplanung, wöchentliche Lieferung",
+  "Agenten führen aus; Menschen geben Richtung",
+];
+---
+
+<Base
+  lang={lang}
+  title="Das Blank Collar Framework"
+  description="Wie wir das Betriebsmodell neu bauen, statt KI daranzuschrauben. Fünf Prinzipien und ein neues Betriebsmodell."
+>
+  <Section>
+    <h1 class="font-ultrabold text-display tracking-tightest leading-none">Das Blank Collar Framework</h1>
+    <p class="mt-8 max-w-3xl text-body-lg text-text/80">
+      Wie wir das Betriebsmodell neu bauen, statt KI daranzuschrauben.
+    </p>
+  </Section>
+
+  <Section class="!pt-0">
+    <div class="prose-site max-w-3xl space-y-4 text-body text-text/90">
+      <p>Die meiste „KI-Transformation" ist keine Transformation. Es ist Automatisierung innerhalb eines kaputten Modells. Dieselben Abteilungen. Dieselben Dienstleister. Dieselben Meetings. Eine ChatGPT-Lizenz pro Mitarbeiter. Das ist keine Transformation — das ist ein neuer Anstrich.</p>
+      <p>Das Blank Collar Framework ist eine andere Behauptung: KI schafft erst dann echten Hebel, wenn man das Betriebsmodell um sie herum neu baut. Wenn ein Team besitzen kann, was früher fünf Dienstleister besaßen.</p>
+      <p class="font-ultrabold text-text">So machen wir es.</p>
+    </div>
+  </Section>
+
+  <Section tone="ink">
+    <h2 class="font-ultrabold text-h2 tracking-tighter">Fünf Prinzipien</h2>
+    <ol class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {principles.map((pr) => (
+        <li class="rounded-lg border border-brand-paper/20 p-6">
+          <span class="font-ultrabold text-h2 tracking-tighter text-brand-magenta">{pr.n}</span>
+          <h3 class="mt-3 font-ultrabold text-h4 uppercase tracking-tighter">{pr.title}</h3>
+          <p class="mt-3 text-small text-brand-paper/80">{pr.body}</p>
+        </li>
+      ))}
+    </ol>
+  </Section>
+
+  <Section>
+    <h2 class="font-ultrabold text-h2 tracking-tighter">Das Modell</h2>
+    <div class="mt-10 grid gap-6 md:grid-cols-2">
+      <article class="card">
+        <h3 class="font-ultrabold text-h4 uppercase tracking-tighter text-text/60">Altes Betriebsmodell</h3>
+        <ul class="mt-4 space-y-2 text-small text-text/80">
+          {old.map((o) => <li>— {o}</li>)}
+        </ul>
+      </article>
+      <article class="card border-brand-magenta/60">
+        <h3 class="font-ultrabold text-h4 uppercase tracking-tighter text-brand-magenta">Neues Betriebsmodell</h3>
+        <ul class="mt-4 space-y-2 text-small text-text">
+          {neu.map((o) => <li>— {o}</li>)}
+        </ul>
+      </article>
+    </div>
+    <p class="mt-10 max-w-3xl text-body-lg text-text/80">
+      Die Gleichung: Verlagern Sie die operative Masse von Menschen zu Agenten, und die Menschen
+      werden zum Hebel, statt zum Engpass.
+    </p>
+  </Section>
+
+  <Section tone="gradient">
+    <div class="max-w-2xl text-brand-ink">
+      <p class="font-ultrabold text-h1 tracking-tightest">Framework auf Ihr Unternehmen angewendet?</p>
+      <p class="mt-6 text-body-lg">Starten Sie mit einem Problem, nicht mit einem Briefing.</p>
+      <a class="btn-primary mt-8" href={p("/contact")}>Mit uns arbeiten →</a>
+    </div>
+  </Section>
+</Base>

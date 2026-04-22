@@ -1,0 +1,25 @@
+---
+import Base from "~/layouts/Base.astro";
+import Section from "~/components/Section.astro";
+import { localizedPath } from "~/i18n/ui";
+const lang = "en" as const;
+const p = (path: string) => localizedPath(lang, path);
+---
+
+<Base
+  lang={lang}
+  title="404 — The Blank Collar"
+  description="This page was built for a pre-AI world and it didn't survive."
+>
+  <Section>
+    <p class="font-ultrabold text-display tracking-tightest text-brand-magenta">404</p>
+    <h1 class="mt-6 font-ultrabold text-h1 tracking-tightest">This page didn't survive.</h1>
+    <p class="mt-6 max-w-2xl text-body-lg text-text/80">
+      It was built for a pre-AI world and the world moved on. So did the URL.
+    </p>
+    <div class="mt-10 flex flex-wrap gap-3">
+      <a class="btn-primary" href={p("/")}>← Home</a>
+      <a class="btn-secondary" href={p("/services/cases")}>See the work</a>
+    </div>
+  </Section>
+</Base>

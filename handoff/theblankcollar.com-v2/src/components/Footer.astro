@@ -1,0 +1,57 @@
+---
+import { t, type Lang, localizedPath } from "~/i18n/ui";
+
+type Props = { lang: Lang };
+const { lang } = Astro.props;
+const s = t(lang);
+const p = (path: string) => localizedPath(lang, path);
+const year = new Date().getFullYear();
+---
+
+<footer class="mt-24 border-t border-border/10 bg-surface-2">
+  <div class="container-site py-16">
+    <div class="grid gap-10 md:grid-cols-4">
+      <div>
+        <h3 class="font-ultrabold uppercase text-small tracking-tighter">{s.footer.services}</h3>
+        <ul class="mt-4 space-y-2 text-small text-text/80">
+          <li><a class="hover:text-brand-magenta" href={p("/services")}>{s.nav.services}</a></li>
+          <li><a class="hover:text-brand-magenta" href={p("/services/cases")}>Cases</a></li>
+          <li><a class="hover:text-brand-magenta" href={p("/framework")}>{s.nav.framework}</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-ultrabold uppercase text-small tracking-tighter">{s.footer.resources}</h3>
+        <ul class="mt-4 space-y-2 text-small text-text/80">
+          <li><a class="hover:text-brand-magenta" href={p("/resources/essays")}>Essays</a></li>
+          <li><a class="hover:text-brand-magenta" href={p("/resources/videos")}>Videos</a></li>
+          <li><a class="hover:text-brand-magenta" href={p("/resources/podcast")}>Podcast</a></li>
+          <li><a class="hover:text-brand-magenta" href={p("/resources/whitepapers")}>Whitepapers</a></li>
+          <li><a class="hover:text-brand-magenta" href={p("/resources/workshops")}>Workshops</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-ultrabold uppercase text-small tracking-tighter">{s.footer.ecosystem}</h3>
+        <ul class="mt-4 space-y-2 text-small text-text/80">
+          <li><a class="hover:text-brand-magenta" href={p("/ecosystem")}>theblankcollar.com</a></li>
+          <li><a class="hover:text-brand-magenta" href="https://blankcollar.com" rel="noopener">blankcollar.com</a></li>
+          <li><a class="hover:text-brand-magenta" href="https://blankcollar.ai" rel="noopener">blankcollar.ai</a></li>
+          <li><a class="hover:text-brand-magenta" href="https://blankcollar.vc" rel="noopener">blankcollar.vc</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-ultrabold uppercase text-small tracking-tighter">{s.footer.company}</h3>
+        <ul class="mt-4 space-y-2 text-small text-text/80">
+          <li><a class="hover:text-brand-magenta" href={p("/about")}>{s.nav.about}</a></li>
+          <li><a class="hover:text-brand-magenta" href={p("/contact")}>{s.nav.contact}</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-12 hairline pt-6 flex flex-col gap-3 md:flex-row md:items-center md:justify-between text-micro text-text/60 uppercase tracking-tighter">
+      <span>© {year} The Blank Collar · {s.footer.colophon}</span>
+      <div class="flex flex-wrap gap-4">
+        <span class="text-brand-magenta font-ultrabold">{s.footer.tagline}</span>
+      </div>
+    </div>
+  </div>
+</footer>
