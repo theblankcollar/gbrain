@@ -1,72 +1,100 @@
 # The Blank Collar — Sitemap & Information Architecture
 
-> Working draft (v0.1). Owner: Kristian. Every page on the site must appear here. Add/remove pages here first, then in code.
+> Owner: Kristian. Full page-by-page spec. Every page on the site must appear here. Add/remove pages here first, then in code.
 
 ## 1. Top navigation (every page)
-
-Order matters — reads left to right as the visitor's journey from "what we do" → "how we think" → "who we are" → "let's talk".
 
 | Label (EN / DE) | URL | Purpose |
 |---|---|---|
 | Services / Leistungen | `/services` | What we sell and what we've shipped |
 | Resources / Ressourcen | `/resources` | Essays, video, podcast, whitepapers, workshops |
-| Framework / Framework | `/framework` | The Blank Collar Framework — the methodology |
+| Framework / Framework | `/framework` | The Blank Collar Framework |
 | About / Über uns | `/about` | Origin story + worldview |
 | Contact / Kontakt | `/contact` | Form + direct channels |
 
-Logo/wordmark in the top-left links to `/` (or `/de/` when in DE locale).
-
-**Language switcher** sits at the far right of the nav: `EN` · `DE` with the active one highlighted. Clicking toggles to the equivalent page in the other locale (uses each page's alternate-locale slug).
+Logo links to `/` (or `/de/`). Language switcher on far right.
 
 ## 2. URL tree (bilingual EN / DE)
 
-Default locale is English at the root. German is prefixed under `/de/`. Every page exists in both locales — there are no EN-only or DE-only pages. The language switcher in the header toggles between the current page's two versions.
-
 ```
-/                                 Home (EN)
-/services                         Services index (EN)
+/                                 Home
+/services                         Services index
 /services/[slug]                  Service detail
 /services/cases                   Cases index (8 cases)
 /services/cases/[slug]            Case detail
 /resources                        Resources hub
-/resources/essays                 Essays index
-/resources/essays/[slug]          Essay detail
-/resources/videos                 Videos index
-/resources/videos/[slug]          Video detail
-/resources/podcast                Podcast index (+ RSS feed)
-/resources/podcast/[slug]         Episode detail
-/resources/whitepapers            Whitepapers index
-/resources/whitepapers/[slug]     Whitepaper detail (with download)
-/resources/workshops              Workshops index
-/resources/workshops/[slug]       Workshop detail
+/resources/essays                 Essays index + /[slug]
+/resources/videos                 Videos index + /[slug]
+/resources/podcast                Podcast index + /[slug] (own RSS)
+/resources/whitepapers            Whitepapers index + /[slug]
+/resources/workshops              Workshops index + /[slug]
 /framework                        The Blank Collar Framework
 /about                            About
 /contact                          Contact
-/ecosystem                        Ecosystem (links to .com / .ai / .vc)
+/ecosystem                        Ecosystem
 /404                              Not found
-
 /de/                              Same tree, German
-/de/services
-/de/services/[slug]
-/de/services/cases
-/de/services/cases/[slug]
-/de/resources
-/de/resources/essays ... etc.
-/de/framework
-/de/about
-/de/contact
-/de/ecosystem
-
-/rss.xml                          EN main RSS
-/de/rss.xml                       DE main RSS
-/resources/podcast/feed.xml       EN podcast RSS
-/de/resources/podcast/feed.xml    DE podcast RSS
-/sitemap.xml                      Auto-generated, both locales
-/robots.txt                       Standard
 ```
 
-Per-page `<link rel="alternate" hreflang="...">` tags point each page at its counterpart for SEO.
+Per-page `hreflang` tags point each page at its counterpart.
 
-See the file `handoff/theblankcollar.com/docs/sitemap.md` in the gbrain repo for the full page-by-page spec. This file intentionally truncated here — full content is in the source `/tmp/theblankcollar/docs/sitemap.md` and has been reproduced verbatim to the repo in subsequent pushes.
+## 3. Page specs
 
-See also: the positioning doc sibling at `./positioning.md`, and the design system at `./design-system.md`.
+### 3.1 Home
+Sections: Hero (manifesto opener, single CTA → contact) · Three on-ramps (Agencies / Enterprises & Scaleups / Mid-market cards) · Proof strip (cased logos: Dentsu, YouGov, Numarics, Cybee.ai, Mai Group, Alletta, Visorway, Iqtax; non-linked: iProspect, Merkle, Mandeta) · The offer (Services / Resources / Framework) · Featured resources (latest essay/video/whitepaper) · Manifesto block (full passage) · Ecosystem teaser (.ai + .vc) · Close CTA.
+
+### 3.2 Services index
+Sections: Heading + positioning · Productized offers (3–5 cards) · Capability areas (6–8: marketing ops, finance ops, HR ops, automation, product build, transformation) · How we work (3 steps: workshop → 24h plan → 7–14d ship) · Cases teaser · CTA.
+
+### 3.3 Service detail `/services/[slug]`
+Sections: Name + outcome · Problem (3 bullets) · What you get · How it works · Timeline (no pricing — contact-driven) · Related cases · CTA.
+
+### 3.4 Cases index `/services/cases`
+Heading · Case grid · optional filters · CTA.
+
+### 3.5 Case detail `/services/cases/[slug]`
+Client + project · Context · What we built (multi-deliverable consolidated as sections) · How AI-native made the difference · Timeline/team · Artifacts · Quote (never fabricate) · Related · CTA.
+
+**Initial slugs (one per client):** `dentsu` (Total Collaboration Framework + Data Lake), `yougov` (Transformation + Buy vs Build), `numarics`, `cybee`, `mai-group`, `alletta`, `visorway`, `iqtax`.
+
+### 3.6 Resources hub `/resources`
+Format cards (Essays/Videos/Podcast/Whitepapers/Workshops) · Latest mixed feed · Subscribe CTA.
+
+### 3.7 Resources by format
+Each format has its own index + detail pattern. Podcast has own RSS at `/resources/podcast/feed.xml`.
+
+### 3.8 Framework `/framework`
+Hero · Principles (3–5) · Model (diagram) · Applied (case snippets) · Related resources · Book callout (*The Blank Collar Equation*, future) · CTA.
+
+### 3.9 About `/about`
+Hero "How it started" · Arc (Tilllate → Havas → Gyro → YouGov → Dentsu → Numarics → Radicant → Cybee.ai → Mandeta → The Blank Collar) · What it's about · Credentials strip (awards + boards) · Photo/signature · CTA.
+
+### 3.10 Contact `/contact`
+"Start with a problem, not a brief" heading · Form (name, company, email, "what are you trying to change", optional budget) · Direct channels · Response expectation. Form → Resend → Kristian.
+
+### 3.11 Ecosystem `/ecosystem`
+Four cards: theblankcollar.com (you're here), blankcollar.com (definition), blankcollar.ai (tools), blankcollar.vc (venture).
+
+### 3.12 404
+Voice-matched. "This page was built for a pre-AI world and it didn't survive."
+
+## 4. Content collections (Astro) — bilingual
+
+Zod schemas in `src/content.config.ts`. Each collection (services, cases, essays, videos, podcast, whitepapers, workshops) uses `[slug].en.mdx` / `[slug].de.mdx` naming. Schema includes `locale: 'en' | 'de'` and `alternateSlug`.
+
+## 5. Footer
+
+Four columns: Services · Resources · Ecosystem · Company. Legal strip: © · Privacy · Terms · Imprint · Social.
+
+## 6. Resolved decisions
+
+- **Cases:** 8 pages, one per client. Multi-deliverable clients consolidate.
+- **Pricing:** contact-driven. No anchors.
+- **Languages:** EN + DE at launch. `/de/` URL prefix. `hreflang` tags.
+
+## 7. Open IA questions
+
+- Workshops as service vs. resource — duplication?
+- Whitepaper gating?
+- On-site search at v1?
+- DE translation flow: simultaneous with EN or EN first?
