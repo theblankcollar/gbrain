@@ -1,0 +1,10 @@
+# Render artifacts
+work-*/
+renders/
+*.log
+
+# Hyperframes caches
+.hyperframes/
+
+# Frame capture output (regenerate via capture.mjs)
+frames/
