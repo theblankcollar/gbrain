@@ -5,3 +5,6 @@ renders/
 
 # Hyperframes caches
 .hyperframes/
+
+# Frame capture output (regenerate via capture.mjs)
+frames/
