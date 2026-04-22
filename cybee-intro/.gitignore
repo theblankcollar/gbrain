@@ -1,0 +1,7 @@
+# Render artifacts
+work-*/
+renders/
+*.log
+
+# Hyperframes caches
+.hyperframes/
